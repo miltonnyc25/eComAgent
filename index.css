@@ -1,0 +1,43 @@
+
+body {
+  font-family: 'Inter', sans-serif; /* A nice default sans-serif font often used with Tailwind */
+  margin: 0; /* Good practice to reset default margin */
+}
+
+/* Custom scrollbar for better aesthetics (optional) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #374151; /* Darker track for dark theme */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6b7280; /* Medium gray thumb */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563; /* Darker thumb on hover */
+}
+
+/* Apply consistent scrollbar to specific elements if needed */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(55, 65, 81, 0.5); /* Tailwind gray-700 with opacity */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #9ca3af; /* Tailwind gray-400 */
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6b7280; /* Tailwind gray-500 */
+}

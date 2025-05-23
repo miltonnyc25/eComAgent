@@ -1,0 +1,4 @@
+{
+  "name": "电商文案写作助手",
+  "description": "一个使用 React、TypeScript 和 Tailwind CSS 构建的电商文案写作辅助工具。用户可以上传多张商品图片和多个参考文件，为 AI 生成文案提供素材。"
+}

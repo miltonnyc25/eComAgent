@@ -1,0 +1,12 @@
+{
+  "name": "ecommerce-copywriting-assistant-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A frontend application that runs directly in the browser using esm.sh for dependencies and Babel Standalone for TSX transpilation. No server-side build or npm install is strictly necessary for the app itself, but this package.json helps CI/CD platforms.",
+  "scripts": {
+    "start": "echo \"This app runs directly in the browser. Serve index.html with a static server.\"",
+    "build": "echo \"No build step required for this setup.\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

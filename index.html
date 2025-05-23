@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电商文案写作助手</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/index.css">
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react-dom": "https://esm.sh/react-dom@^19.1.0",
+    "react-dom/client": "https://esm.sh/react-dom@^19.1.0/client.js",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/"
+  }
+}
+</script>
+  <!-- 1. 引入 Babel Standalone -->
+  <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+</head>
+<body class="bg-slate-100">
+  <div id="root"></div>
+
+  <!-- 2. 动态加载和转译 index.tsx -->
+  <script>
+    (async () => {
+      try {
+        console.log('Fetching /index.tsx...');
+        const response = await fetch('/index.tsx');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch /index.tsx: ${response.status} ${response.statusText}`);
+        }
+        const tsxCode = await response.text();
+        console.log('/index.tsx fetched successfully. Code length:', tsxCode.length);
+
+        console.log('Transforming TSX code with Babel...');
+        const presets = ['env', 'react', 'typescript'];
+        // The 'filename' option helps Babel apply presets correctly and can be useful for sourcemaps
+        const transformed = Babel.transform(tsxCode, { presets: presets, filename: 'index.tsx' }); 
+        console.log('Babel transformation complete. Transformed code length:', transformed.code.length);
+
+        const script = document.createElement('script');
+        script.type = 'module'; // Crucial: treat the transpiled code as an ES module
+        script.textContent = transformed.code;
+        document.body.appendChild(script);
+        console.log('Dynamically created script tag appended to body.');
+
+      } catch (error) {
+        console.error('Error loading or transforming /index.tsx:', error);
+        const rootDiv = document.getElementById('root');
+        if (rootDiv) {
+            rootDiv.innerHTML = `<div style="color: red; padding: 20px; font-family: sans-serif;">
+                <h2>应用程序加载失败</h2>
+                <p>加载或转译主应用程序脚本时发生错误。</p>
+                <pre style="white-space: pre-wrap; background-color: #fdd; border: 1px solid red; padding: 10px;">${error.message}\n${error.stack || ''}</pre>
+                <p>请检查浏览器控制台以获取更多详细信息。</p>
+            </div>`;
+        }
+      }
+    })();
+  </script>
+  <!-- 移除旧的 Babel script 标签 -->
+  <!-- 
+  <script type="text/babel" 
+          data-src="/index.tsx" 
+          data-presets="env,react,typescript" 
+          data-type="module">
+  </script> 
+  -->
+</body>
+</html><link rel="stylesheet" href="index.css">
+<script src="index.tsx" type="module"></script>
